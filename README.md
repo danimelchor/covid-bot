@@ -8,7 +8,7 @@ For this program to work you need to set the variables `buUsername`, `buPassword
 This program depends on Python's `selenium` module.
 In addition, this program needs [ChromeDriver](https://chromedriver.chromium.org/downloads) that matches the version of your current Chrome.
 
-
-
+#
+#
 ###### By Daniel Melchor (Class of 2024)
 ###### Heavily inspired by [Nic Nguyen](https://github.com/nico22nguyen)
