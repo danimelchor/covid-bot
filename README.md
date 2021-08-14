@@ -88,6 +88,10 @@ crontab -l
 
 I am open to any type of contribution/suggestion. Just open a pull request directly to master and I will review your code and merge it. Please make sure your code is well formatted using [black](https://github.com/psf/black).
 
+## Terms of usage
+
+I am in no way responsible of your actions with this bot. I have made it as a project for fun and don't plan to use it with any malicious intents. Please make sure you know what you are doing.
+
 ---
 
 ###### By Daniel Melchor (Class of 2024)
