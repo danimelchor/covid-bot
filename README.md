@@ -4,6 +4,10 @@
 
 This bot uses cron jobs to schedule the execution every day. Therefore, only computers using UNIX based systems (mac/linux) can use it. Windows will probably be implemented in the future.
 
+Also, this bot uses a framework called [selenium](https://selenium-python.readthedocs.io/). Therefore, it requires what is called a "chromedriver" executable. The ones included with the repository are for chrome version 92. If you have a different chrome version, please download it from [here](https://chromedriver.chromium.org/downloads) and save it with the name `<YOUR-OS-HERE>_chromedriver` like the ones in the folder `drivers/`.
+
+To check your version of chrome, open chrome and click on the 3 dots on the top right, then click settings. All the way at the bottom there should be an "About Chrome" link. There you will be able to find your current Chrome version with the format `9X.X.X.X` where we are only interested in the first two numbers. If your version is not 92, please download your version of chromedriver.
+
 ## Setup
 
 This bot is created with python. First, you will need to have python installed (which usually comes by default). To check if you have it run:
@@ -20,7 +24,7 @@ pip -V
 
 Then, to install its dependencies run
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
@@ -30,7 +34,7 @@ _Note: you may want to user a [virtual environment](https://packaging.python.org
 
 ### Before you begin
 
-Before you begin you need to find out what your current user is with
+Before you begin you need to find out what your current user is. Find it by typing in your cmd line
 
 ```bash
 id -un
@@ -68,7 +72,7 @@ Since surveys need to be completed every day, and tests every week, it is conven
 
 To schedule the bot run:
 
-```
+```bash
 python main.py --schedule
 ```
 
@@ -79,6 +83,10 @@ To check if it created anything after running that command, type
 ```bash
 crontab -l
 ```
+
+## Contributions
+
+I am open to any type of contribution/suggestion. Just open a pull request directly to master and I will review your code and merge it. Please make sure your code is well formatted using [black](https://github.com/psf/black).
 
 ---
 
