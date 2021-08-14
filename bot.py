@@ -16,17 +16,21 @@ current_path = os.path.dirname(os.path.realpath(__file__))
 
 
 class Bot:
+    """
+    A class to interact with the bot
+    """
+
     def __init__(
         self,
-        current_os,
-        hidden,
-        username,
-        password,
-        tests_every,
-        last_test,
-        test_loc,
-        test_time,
-        book_ahead,
+        current_os: str,
+        hidden: bool,
+        username: str,
+        password: str,
+        tests_every: int,
+        last_test: datetime,
+        test_loc: str,
+        test_time: datetime,
+        book_ahead: int,
     ):
         self.current_os = current_os
         self.hidden = hidden
@@ -39,6 +43,11 @@ class Bot:
         self.book_ahead = book_ahead
 
     def start(self):
+        """
+        Starts the selenium web driver with its configuration and navigates to
+        patientconnect's website
+        """
+
         options = Options()
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-setuid-sandbox")
@@ -61,6 +70,9 @@ class Bot:
         self.login()
 
     def login(self):
+        """
+        Logins the user with the provided credentials inside config
+        """
         login_username = self.driver.find_element_by_xpath('//*[@id="j_username"]')
         login_username.send_keys(self.username)
 
@@ -77,6 +89,10 @@ class Bot:
         self.driver.close()
 
     def complete_survey(self):
+        """
+        Completes the symptom survey (currently only one question)
+        """
+
         self.driver.find_element_by_xpath(
             '//a[contains(text(),"Complete Survey")]'
         ).click()
@@ -85,9 +101,17 @@ class Bot:
         self.driver.find_element_by_xpath('//input[@value = "Continue"]').click()
 
     def schedule_test(self):
+        """
+        Schedules a test in self.book_ahead days if it is time for another test
+        according to my last test (self.last_test) and how often I want the tests
+        (self.tests_every)
+        """
+
+        # Get how many days have been since the last test
         today = datetime.today()
         delta = today - self.last_test
 
+        # Get if today is not time for a test and skip the testing appointment
         if abs(delta.days) % self.tests_every != self.tests_every - self.book_ahead:
             return
 
@@ -150,6 +174,7 @@ class Bot:
                 self.driver.close()
                 exit()
             except Exception:
+                # Increase 5 minutes to our preferred time
                 self.test_time += timedelta(minutes=5)
 
         # If no times were found

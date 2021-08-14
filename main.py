@@ -5,7 +5,7 @@
 import argparse
 import json
 import os
-from datetime import date, datetime
+from datetime import datetime
 
 from crontab import CronTab
 
@@ -105,9 +105,6 @@ def run_bot(hidden):
             )
             bot.start()
 
-            # Logging
-            logger.log("Successfully finished execution from cron")
-
             # Save successful execution date to now
             file = open(config_file, "r")
             config = json.load(file)
@@ -122,6 +119,9 @@ def run_bot(hidden):
             )
             print(f"Error: {e}")
             logger.error(e)
+    else:
+        # Logging
+        logger.log("Survey already completed today")
 
 
 def get_args():
@@ -159,24 +159,16 @@ if __name__ == "__main__":
             "Do you want to run the bot visually, schedule its execution for every day, or delete the scheduled execution? [run/schedule/delete] "
         )
     else:
-        option = (
-            "run"
-            if args.run
-            else "schedule"
-            if args.schedule
-            else "delete"
-            if args.delete
-            else "cron"
-        )
+        option = ""
 
     # Depending on the args we run a different function/method
-    if option == "run":
+    if args.run or option == "run":
         run_bot(hidden=False)
-    elif option == "cron":
+    elif args.cron:
         run_bot(hidden=True)
-    elif option == "schedule":
+    elif args.schedule or option == "schedule":
         schedule_cron()
-    elif option == "delete":
+    elif args.delete or option == "delete":
         delete_cron()
     else:
         print("Whoops! The only options are 'schedule', 'delete' and 'run'")

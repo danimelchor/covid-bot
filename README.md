@@ -95,6 +95,12 @@ I am open to any type of contribution/suggestion. Just open a pull request direc
 
 I am in no way responsible of your actions with this bot. I have made it as a project for fun and don't plan to use it with any malicious intents. Please make sure you know what you are doing.
 
+## **Future Improvements**
+
+Since I have not been able to reproduce the error patient connect gives when it thinks a slot is opened, but it is actually full (once you click it there is a red text saying that there was an error and that it is full), this error is not accounted for. If you get it, it is probably a good idea to force a re-run using the `python main.py --run` command.
+
+I will also try to implement the Windows possibility once I understand how the task scheduler works.
+
 ---
 
 ###### By [Daniel Melchor](https://danielmelchor.com) (Class of 2024)
