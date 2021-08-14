@@ -97,6 +97,6 @@ I am in no way responsible of your actions with this bot. I have made it as a pr
 
 ---
 
-###### By Daniel Melchor (Class of 2024)
+###### By [Daniel Melchor](https://danielmelchor.com) (Class of 2024)
 
 ###### Heavily inspired by [Nic Nguyen](https://github.com/nico22nguyen)
