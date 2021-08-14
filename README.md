@@ -1,6 +1,9 @@
-# Boston University COVID-19 Bot
+![version](https://img.shields.io/badge/version-2.0.1-blue)
+![license](https://img.shields.io/badge/license-MIT-green)
 
-## Requirements
+# **Boston University COVID-19 Bot**
+
+## **Requirements**
 
 This bot uses cron jobs to schedule the execution every day. Therefore, only computers using UNIX based systems (mac/linux) can use it. Windows will probably be implemented in the future.
 
@@ -8,7 +11,7 @@ Also, this bot uses a framework called [selenium](https://selenium-python.readth
 
 To check your version of chrome, open chrome and click on the 3 dots on the top right, then click settings. All the way at the bottom there should be an "About Chrome" link. There you will be able to find your current Chrome version with the format `9X.X.X.X` where we are only interested in the first two numbers. If your version is not 92, please download your version of chromedriver.
 
-## Setup
+## **Setup**
 
 This bot is created with python. First, you will need to have python installed (which usually comes by default). To check if you have it run:
 
@@ -30,7 +33,7 @@ pip install -r requirements.txt
 
 _Note: you may want to user a [virtual environment](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/) for the installed packages_
 
-## Configuration
+## **Configuration**
 
 ### Before you begin
 
@@ -58,7 +61,7 @@ python setup.py
 
 and answer all the questions.
 
-## Usage
+## **Usage**
 
 To start using the bot, you will need to run:
 
@@ -66,7 +69,7 @@ To start using the bot, you will need to run:
 python main.py --run
 ```
 
-## Scheduling the bot
+## **Scheduling the bot**
 
 Since surveys need to be completed every day, and tests every week, it is convenient if you schedule the python bot and let it run every day by itself.
 
@@ -84,11 +87,11 @@ To check if it created anything after running that command, type
 crontab -l
 ```
 
-## Contributions
+## **Contributions**
 
 I am open to any type of contribution/suggestion. Just open a pull request directly to master and I will review your code and merge it. Please make sure your code is well formatted using [black](https://github.com/psf/black).
 
-## Terms of usage
+## **Terms of usage**
 
 I am in no way responsible of your actions with this bot. I have made it as a project for fun and don't plan to use it with any malicious intents. Please make sure you know what you are doing.
 
