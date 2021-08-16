@@ -27,15 +27,18 @@ try:
 
     OS = config["current_os"].lower()
     USERNAME = config["username"]
-    OS_USER = config["os_user"]
-    PASSWORD = config["password"]
-    TESTS_EVERY = int(config["tests_every"])
-    LAST_TEST = datetime.strptime(config["last_test"], "%m/%d/%Y")
-    TEST_LOC = config["test_loc"]
-    TEST_TIME = datetime.strptime(config["test_time"], "%I:%M%p")
-    BOOK_AHEAD_DAYS = int(config["book_ahead"])
     DISPLAY = config["display"]
+    PASSWORD = config["password"]
+    WANT_TESTS = config["want_tests"] == "yes"
     LAST_BOT_RUN = datetime.strptime(config["last_bot_run"], "%m/%d/%Y")
+
+    if WANT_TESTS:
+        TESTS_EVERY = int(config["tests_every"])
+        OS_USER = config["os_user"]
+        LAST_TEST = datetime.strptime(config["last_test"], "%m/%d/%Y")
+        TEST_LOC = config["test_loc"]
+        TEST_TIME = datetime.strptime(config["test_time"], "%I:%M %p")
+        BOOK_AHEAD_DAYS = int(config["book_ahead"])
 except Exception as e:
     print("Please complete the setup with the command: python setup.py")
     print(f"Error: {e}")
@@ -92,17 +95,32 @@ def run_bot(hidden):
             logger.log("Started Bot From Cron")
 
             # Start run
-            bot = Bot(
-                OS,
-                hidden,
-                USERNAME,
-                PASSWORD,
-                TESTS_EVERY,
-                LAST_TEST,
-                TEST_LOC,
-                TEST_TIME,
-                BOOK_AHEAD_DAYS,
-            )
+            if WANT_TESTS:
+                bot = Bot(
+                    OS,
+                    hidden,
+                    USERNAME,
+                    PASSWORD,
+                    TESTS_EVERY,
+                    LAST_TEST,
+                    TEST_LOC,
+                    TEST_TIME,
+                    BOOK_AHEAD_DAYS,
+                    WANT_TESTS,
+                )
+            else:
+                bot = Bot(
+                    OS,
+                    hidden,
+                    USERNAME,
+                    PASSWORD,
+                    None,
+                    None,
+                    None,
+                    None,
+                    None,
+                    WANT_TESTS,
+                )
             bot.start()
 
             # Save successful execution date to now

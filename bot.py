@@ -31,6 +31,7 @@ class Bot:
         test_loc: str,
         test_time: datetime,
         book_ahead: int,
+        schedule_tests: bool,
     ):
         self.current_os = current_os
         self.hidden = hidden
@@ -41,6 +42,7 @@ class Bot:
         self.test_loc = test_loc
         self.test_time = test_time
         self.book_ahead = book_ahead
+        self.schedule_tests = schedule_tests
 
     def start(self):
         """
@@ -85,7 +87,8 @@ class Bot:
         self.complete_survey()
         logger.log("Survey completed")
 
-        self.schedule_test()
+        if self.schedule_tests:
+            self.schedule_test()
         self.driver.close()
 
     def complete_survey(self):
