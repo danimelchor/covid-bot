@@ -75,13 +75,16 @@ class Bot:
         """
         Logins the user with the provided credentials inside config
         """
-        login_username = self.driver.find_element_by_xpath('//*[@id="j_username"]')
+        login_username = self.driver.find_element_by_xpath(
+            '//*[@id="j_username"]')
         login_username.send_keys(self.username)
 
-        login_password = self.driver.find_element_by_xpath('//*[@id="j_password"]')
+        login_password = self.driver.find_element_by_xpath(
+            '//*[@id="j_password"]')
         login_password.send_keys(self.password)
 
-        self.driver.find_element_by_xpath('//*[@id="wrapper"]/div/form/button').click()
+        self.driver.find_element_by_xpath(
+            '//*[@id="wrapper"]/div/form/button').click()
         logger.log("User logged in")
 
         self.complete_survey()
@@ -99,9 +102,12 @@ class Bot:
         self.driver.find_element_by_xpath(
             '//a[contains(text(),"Complete Survey")]'
         ).click()
-        self.driver.find_element_by_xpath('//a[contains(text(),"Continue")]').click()
-        self.driver.find_element_by_xpath('//label[contains(text(),"No")]').click()
-        self.driver.find_element_by_xpath('//input[@value = "Continue"]').click()
+        self.driver.find_element_by_xpath(
+            '//a[contains(text(),"Continue")]').click()
+        self.driver.find_element_by_xpath(
+            '//label[contains(text(),"No")]').click()
+        self.driver.find_element_by_xpath(
+            '//input[@value = "Continue"]').click()
 
     def schedule_test(self):
         """
@@ -115,7 +121,7 @@ class Bot:
         delta = today - self.last_test
 
         # Get if today is not time for a test and skip the testing appointment
-        if abs(delta.days) % self.tests_every != self.tests_every - self.book_ahead:
+        if delta.days != self.tests_every - self.book_ahead:
             return
 
         self.driver.get("https://patientconnect.bu.edu/appointments_home.aspx")
@@ -130,7 +136,8 @@ class Bot:
             self.driver.find_element_by_xpath('//*[@id="cmdProceed"]').click()
 
         # Confirm contact info
-        self.driver.find_element_by_xpath('//*[@id="cmdStandardProceed"]').click()
+        self.driver.find_element_by_xpath(
+            '//*[@id="cmdStandardProceed"]').click()
 
         # Select test date
         test_date = date.today() + timedelta(self.book_ahead)
@@ -164,7 +171,8 @@ class Bot:
                 self.driver.find_element_by_xpath(
                     '//*[@id="cmdStandardProceed"]'
                 ).click()
-                self.driver.find_element_by_xpath('//*[@id="cmdConfirm"]').click()
+                self.driver.find_element_by_xpath(
+                    '//*[@id="cmdConfirm"]').click()
 
                 # Logging
                 msg = (

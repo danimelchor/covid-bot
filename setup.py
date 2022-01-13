@@ -4,6 +4,7 @@ from datetime import datetime
 
 
 def ask(question, possible_answers=False):
+    # Helper method to ask question until valid answer
     while True:
         answer = input(question)
 
@@ -19,6 +20,7 @@ def ask(question, possible_answers=False):
 
 
 def ask_date(question, format):
+    # Helper method to ask question until valid date
     while True:
         answer = input(question)
 
@@ -31,6 +33,7 @@ def ask_date(question, format):
 
 
 def ask_int(question):
+    # Helper method to ask question until valid integer
     while True:
         answer = input(question)
 

@@ -1,4 +1,4 @@
-# Boston University symptom survey and covid-19 appointment maker
+# Boston University symptom survey and COVID-19 appointment maker
 # By Daniel Melchor (Class of 2024)
 # Inspired by Nic Nguyen
 
@@ -127,7 +127,9 @@ def run_bot(hidden):
             file = open(config_file, "r")
             config = json.load(file)
             file.close()
+
             config["last_bot_run"] = datetime.now().strftime("%m/%d/%Y")
+
             file = open(config_file, "w")
             json.dump(config, file)
             file.close()
